@@ -4,7 +4,7 @@ import authStore from "../stores/authStore";
 import axios from "axios";
 import api from "../stores/api";
 
-function SignUpModal() {
+function SignInModal() {
  const [isOpen, setIsOpen] = useState(false);
  const [user,setUser] = useState({ 
  username:"",
@@ -18,7 +18,7 @@ const handleChange = (event) => {
 };
 const handleSubmit = (event) => {
     event.preventDefault();
-    authStore.signUpMethod(user);
+    authStore.signInMethod(user);
     setIsOpen(false);
     // closeMOdal();
   }
@@ -26,26 +26,25 @@ const handleSubmit = (event) => {
   return (
     <>
       <Button className="delete" onClick={() => setIsOpen(true)}>
-        Sign Up
+        Sign In
       </Button>
       <Modal centered show={isOpen} onHide={() => setIsOpen(false)}>
         <Modal.Header closeButton>
-          <Modal.Title>Sign up</Modal.Title>
+          <Modal.Title>Sign in</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleSubmit}>
            <input value={user.username} type="text" onChange={handleChange} name="username" placeholder="Enter your username" />
            <input value={user.password} type="password" onChange={handleChange} name="password" placeholder="Enter your password"/>
-           <input type="text" onChange={handleChange} name="dummytext" placeholder="does entry here console log?"/>
           </Form>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="primary" onClick={handleSubmit}>
-            Sign up
+            Sign in
           </Button>
         </Modal.Footer>
       </Modal>
     </>
   );
 }
-export default SignUpModal;
+export default SignInModal;
